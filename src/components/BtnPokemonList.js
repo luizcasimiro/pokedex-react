@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 
-function ButtonList() {
+function BtnPokemonList() {
   const navigate = useNavigate();
 
   return (
@@ -13,4 +13,4 @@ function ButtonList() {
     </div>
   )
 }
-export default ButtonList;
+export default BtnPokemonList;
