@@ -4,6 +4,7 @@ import Header from "../components/Header";
 
 function MyPokemon() {
   const myPokemon = JSON.parse(localStorage.getItem('myPokemon'));
+  const myPokemonSorted = [...myPokemon].sort((a, b) => a.id - b.id);
 
   if (!myPokemon) {
     return (
@@ -28,7 +29,7 @@ function MyPokemon() {
         </div>
 
         <div>
-          {myPokemon.map(poke =>
+          {myPokemonSorted.map(poke =>
             <div key={poke.id} className='flex justify-center' >
               <CardDetails
                 abilities={poke.abilities}
