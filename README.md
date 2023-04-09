@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+# Teste Prático Frontend Irricontrol – Luiz Casimiro
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Desafio técnico realizado como parte do processo seletivo da [Irricontrol](https://irricontrol.com.br/home/). O desafio consistiu em desenvolver uma Pokédex: aplicação web que simula a busca e captura de diferentes pokémon. A aplicação foi feita com [React](https://reactjs.org/). O gerenciamento de estado global foi feto com [Redux](https://redux-toolkit.js.org/). A estilização foi feita com [TailwindCSS](https://tailwindcss.com/).
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+## Deploy
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+O deploy da aplicação foi feito na plataforma [Vercel](https://vercel.com/), e pode ser visto no link: 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+   https://pokedex-luiz.vercel.app/
+```
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Rodando a aplicação no seu computador
 
-### `npm run build`
+Para rodar a aplicação localmente na sua máqina, é necessário clonar o projeto e instalar suas dependências. O projeto se encontra em um [repositório remoto do github](https://github.com/luizcasimiro/pokedex-luiz). Para cloná-lo, certifique-se de que você tem o [git](https://github.com/git-guides/install-git) instalado, e então execute um dos comandos abaixo no bash (linux e mac) ou cmd/powershell (windows):
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Em SSH:
+```bash
+  git clone git@github.com:luizcasimiro/pokedex-luiz.git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Em HTTPS:
+```bash
+  git clone https://github.com/luizcasimiro/pokedex-luiz.git
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Depois de clonar o repositório, entre na pasta que você acabou de clonar com o comando:
 
-### `npm run eject`
+```bash
+  cd pokedex-luiz
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+(Aqui é importante que você se certifique de que você tem a versão mais atualizada do [NodeJS LTS](https://nodejs.org/en/). Você pode verificar a versão que você tem instalada na sua máquina digitando no bash ou cmd/powershell o comando: node --version)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Uma vez dentro da pasta, instale as dependências do projeto com o comando abaixo:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+  npm install
+```
 
-## Learn More
+Para ver a aplcação rodando, basta digitar:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+  npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   
+    
+## API utilizada no desenvolvimento
 
-### Code Splitting
+As informações dos pokémon foram obtidas da [PokéApi](https://pokeapi.co/docs/v2). 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Descrição das Páginas
 
-### Making a Progressive Web App
+A aplicação foi desenvolvida com cinco páginas:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Login
+- Home
+- List
+- Search
+- MyPokémon
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### Página de Login
 
-### Deployment
+A página de Login recebe os inputs de email e senha. O email deve seguir a estrutura example@example.com e a senha deve ter no mínimo seis caracteres. O botão LOGIN só é habilitado caso email e senha sejam válidos. Ao clicar no botão LOGIN, o usuário é direcionado para a Home e o email é salvo no Local Storage. O email é então mostrado no Header de todas as páginas. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+![login](./images-readme/01-login.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+#### Página Home
+
+Nesta página, o usuário encontra informações sobre o que é possível fazer na aplicação. Ele tem a opção de ir para a página List e ver uma lista com todos os pokémon existentes; ir para a página Search e procurar por diferentes pokémon; ou ainda ir para a página MyPokémon, onde encontra seus pokémon capturados. Os botões para cada uma dessas páginas estão presentes na página Home, bem como no Header de todas as páginas.
+
+
+![home](./images-readme/02-home.png)
+
+
+#### Página List
+
+Assim que esta página é renderizada, uma requisição é feita para o endpoint https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1154. Este endpoint retorna, entre outras informações, um array com 1154 objetos. Cada objeto contém o nome e a url de cada um dos pokémon atualmente existentes. Estas informações são setadas no estado pokemonList. Posteriormente, estas informações são lidas pelo componente da página List, o qual renderiza uma lista com o id e o nome de cada pokémon.
+
+
+![list](./images-readme/03-list.png)
+
+
+#### Página Search
+
+Aqui o usuário pode buscar por qualquer pokémon existente na página List. Ao digitar o nome ou id do pokémon no input, e clicar no botão SEARCH (o qual só é habilitado se algo for digitado no input), uma requisição é feita para o endpoint https://pokeapi.co/api/v2/pokemon/{id-or-name}/. Este endpoint retorna um objeto com todas as informações pertinentes ao pokémon buscado. Estas informações são setadas no estado pokeData. Posteriormente, estas informações são lidas pelo componente da página Search, o qual renderiza um card com a imagem, id, e nome do pokémon. Dentro do card também é renderizado o botão CATCH. Ao clicar neste botão, o pokémon buscado é “capturado”, ou seja, ele é salvo no Local Storage e posteriormente lido pelo componente da página MyPokémon.
+
+
+![search](./images-readme/04-search.png)
+
+
+#### Página MyPokémon
+
+Ao renderizar, o componente da página MyPokémon lê as informações de todos os pokémon capturados no Local Storage e renderiza um card para cada pokémon com informações como imagem, id, nome, tipos, habilidades, peso, altura, hit points, ataque, defesa, e velocidade. 
+
+
+![mypokemon](./images-readme/05-mypokemon.png)
+
+
+## Melhorias futuras
+
+1. Algumas funcionalidades descritas nas instruções do teste não foram implementadas, mas com certeza viriam a melhorar muito a aplicação, as quais:
+
+a) Pokémon por tipo e habilidade: Os tipos e habilidades listados foram renderizados como botões. Uma melhoria futura seria fazer uma requisição para a PokeApi no clique de cada botão, e obter informações como todos os pokémon de cada tipo, ou efeito de cada habilidade. Endpoints a serem utilizados: https://pokeapi.co/api/v2/type/{id-or-name}/ para os tipos e https://pokeapi.co/api/v2/ability/{id-or-name}/ para as habilidades. 
+
+b) Evolução: A PokeApi também possui informações sobre os passos de evolução de cada pokémon, as quais podem ser obtidas e renderizadas na aplicação. Endpoint a ser utilizado: https://pokeapi.co/api/v2/evolution-chain/{id}/.
+
+2. Location Areas: Seria interessante mostrar os mapas onde os pokémon podem ser encontrados nos jogos. Endpoint a ser utilizado: https://pokeapi.co/api/v2/location-area/{id-or-name}/.
+
+3. Diferentes idiomas: Por se tratar de uma aplicação relativamente pequena, seria possível traduzir os textos para outros idiomas.  
+
+4. Implementação de testes: Testes apontam para a quebra de funcionalidades. Isto é importante para que nós desenvolvedores possamos estar cientes de eventuais quebras de algumas funcionalidades enquanto desenvolvemos outras. Além disso, testes exigem que nós desenvolvedores nos coloquemos no lugar do usuário e simulemos seu comportamento.   
