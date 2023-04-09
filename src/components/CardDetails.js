@@ -19,32 +19,22 @@ function CardDetails({ abilities, attack, defense, height, hp, id, name, speed, 
 
       <div>
         Types: {types.map(type =>
-          <button
-            className='border-b border-blue-800 mx-2 text-blue-800'
-            key={type[0]}
-            type='button'
-          >
-            {type[0]}
-          </button>)}
+          <span className='mx-2' key={type[0]}>{type[0]}</span>
+        )}
       </div>
 
       <div>
         Abilities: {abilities.map(ability =>
-          <button
-            className='border-b border-blue-800 mx-2 text-blue-800'
-            key={ability[0]}
-            type='button'
-          >
-            {ability[0]}
-          </button>)}
+          <span className='mx-2' key={ability[0]}>{ability[0]}</span>
+        )}
       </div>
 
       <div>
-        Weight: {weight} kg
+        Weight: {weight / 10} kg
       </div>
 
       <div>
-        Height: {height * 10} cm
+        Height: {height / 10} m
       </div>
 
       <div>
